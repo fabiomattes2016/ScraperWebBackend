@@ -18,9 +18,11 @@ namespace ScraperWeb.API.Services
             // Laço para popular a lista de resultados
             for (int i = 1; i <= paginas; i++)
             {
+                // Delay para evitar bloqueio temporario de IP
                 Thread.Sleep(10000);
+
                 // URL base do google search onde: passa-se a busca, o número de resultados, e o total de páginas a serem carregadas
-                string url = $"https://www.google.com/search?q={assunto}&num=250&start={(i - 1) * 10}";
+                string url = $"https://www.google.com/search?q={assunto}&num=500&start={(i - 1) * 10}";
 
                 // Carrega-se o componente HtmlAgilityPack -> https://html-agility-pack.net
                 HtmlWeb web = new HtmlWeb();
