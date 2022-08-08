@@ -10,7 +10,7 @@ namespace ScraperWeb.API.Services
          * Classe responsável por fazer o scraping dos resultados
          * da busca no google, sem o uso de API's externas
          */
-        public List<Resultado> Buscar(string assunto, int paginas, int resultados)
+        public List<Resultado> Buscar(string assunto, int? paginas = 1)
         {
             // Cria-se uma lista de resultados
             List<Resultado> resultado = new();
@@ -18,14 +18,15 @@ namespace ScraperWeb.API.Services
             // Laço para popular a lista de resultados
             for (int i = 1; i <= paginas; i++)
             {
+                Thread.Sleep(10000);
                 // URL base do google search onde: passa-se a busca, o número de resultados, e o total de páginas a serem carregadas
-                string url = $"https://www.google.com/search?q={assunto}&num={resultados}&start={((i - 1) * 10).ToString()}";
+                string url = $"https://www.google.com/search?q={assunto}&num=250&start={(i - 1) * 10}";
 
                 // Carrega-se o componente HtmlAgilityPack -> https://html-agility-pack.net
                 HtmlWeb web = new HtmlWeb();
 
                 // Aqui faz-se uso de qual tipo de navegador está fazendo a requisição (Chrome)
-                web.UserAgent = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
+                web.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
                 
                 // Cria-se o objeto com o html completo
                 var htmlDoc = web.Load(url);

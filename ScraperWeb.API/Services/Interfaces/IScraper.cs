@@ -4,6 +4,6 @@ namespace ScraperWeb.API.Services.Interfaces
 {
     public interface IScraper
     {
-        List<Resultado> Buscar(string assunto, int paginas, int resultados);
+        List<Resultado> Buscar(string assunto, int? paginas);
     }
 }

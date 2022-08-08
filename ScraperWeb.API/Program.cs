@@ -18,10 +18,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/search", (string assunto, int paginas, int resultados) =>
+app.MapGet("/search", (string assunto) =>
 {
     Scraper scraper = new();
-    var response = scraper.Buscar(assunto, paginas, resultados);
+    var response = scraper.Buscar(assunto);
 
     return Results.Ok(response);
 });
