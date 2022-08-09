@@ -23,6 +23,8 @@ app.MapGet("/search", (string assunto) =>
     Scraper scraper = new();
     var response = scraper.Buscar(assunto);
 
+    if (response == null) return Results.BadRequest("Não foram retornados resultados devido a um erro");        
+
     return Results.Ok(response);
 });
 
