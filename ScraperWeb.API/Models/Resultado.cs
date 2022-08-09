@@ -1,8 +1,4 @@
 ﻿namespace ScraperWeb.API.Models
 {
-    public class Resultado
-    {
-        public string? Titulo { get; set; }
-        public string? Url { get; set; }
-    }
+    public record Resultado(string? Termo, string? Titulo, string? Url);
 }
