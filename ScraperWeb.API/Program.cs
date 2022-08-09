@@ -1,3 +1,4 @@
+using ScraperWeb.API.Models;
 using ScraperWeb.API.Services;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -37,6 +38,7 @@ app.MapGet("/search", (string assunto) =>
     if (response == null) return Results.BadRequest("Não foram retornados resultados devido a um erro");        
 
     return Results.Ok(response);
-});
+})
+.Produces<Resultado>();
 
 app.Run();
